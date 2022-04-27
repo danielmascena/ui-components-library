@@ -1,4 +1,4 @@
-# UI Components
+# React UI Components
 
 A React components library using [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to host the components.
 
