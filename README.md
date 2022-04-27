@@ -1,6 +1,6 @@
 # React UI Components
 
-A React components library using [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to host the components.
+A React component library using [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to host the components.
 
 The components will be organized using the [Atomic UI](https://www.uxpin.com/studio/blog/atomic-ui-components/) methodology:
 
