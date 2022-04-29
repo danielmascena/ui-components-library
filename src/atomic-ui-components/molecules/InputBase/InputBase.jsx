@@ -1,40 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {forwardRef} from 'react';
+import PropTypes from "prop-types";
 
 import {
     InputBaseContainer,
     InputBaseElement,
-    InputLabel
+    InputLabel,
+    WrapperAsideIcon
 } from "./styled-component";
 
-const InputBase = ({
+const InputBase = forwardRef(({
     labelText,
     inputType,
     placeholderText,
-    changeHandler,
+    changeHandler = (event) => event.preventDefault(),
     hasInnerLabel,
-    inputId,
-    classNames
-}) => {
-    inputId ??= labelText.split(' ').join('-');
-
+    id,
+    classNames,
+    asideIcon
+}, ref) => {
+    
+    const inputId = (id ?? labelText.replace(" ", "-")).toLowerCase();
+    let IconElement;
+    
+    if (asideIcon) {
+        IconElement = React.createFactory(asideIcon);
+    }
     return (
         <InputBaseContainer>
+            
             <InputLabel htmlFor={inputId} hasInnerLabel={hasInnerLabel}>
                 {labelText}
             </InputLabel>
-            
             <InputBaseElement 
                 type={inputType}
                 placeholder={placeholderText}
                 aria-label={labelText}
                 className={classNames}
                 id={inputId}
+                onChange={changeHandler}
                 hasInnerLabel={hasInnerLabel}
+                ref={ref}
             />
+
+            {asideIcon && (
+                <WrapperAsideIcon>
+                    <IconElement />
+                </WrapperAsideIcon>
+            )}
         </InputBaseContainer>
     );
-};
+});
 
 InputBase.propTypes = {
     labelText: PropTypes.string.isRequired,
@@ -42,8 +57,9 @@ InputBase.propTypes = {
     placeholderText: PropTypes.string,
     changeHandler: PropTypes.func,
     hasOuterLabel: PropTypes.bool,
-    inputId: PropTypes.string,
-    classNames: PropTypes.string
+    id: PropTypes.string,
+    classNames: PropTypes.string,
+    asideIcon: PropTypes.element
 };
 
 InputBase.defaultProps = {

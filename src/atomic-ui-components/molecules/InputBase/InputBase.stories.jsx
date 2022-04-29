@@ -1,5 +1,7 @@
 import React from "react";
 
+import {ReactComponent as UserIcon} from "../../icons/user.svg";
+
 import InputBase from "./InputBase";
 
 export default {
@@ -20,4 +22,5 @@ PasswordInputBase.args = {
     labelText: "Password",
     hasInnerLabel: true,
     placeholderText: "the most secured password in the planet ",
+    asideIcon: UserIcon,
 };
